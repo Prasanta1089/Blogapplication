@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{% block title %} Search results:{% endblock title %}
+{% block blogactive %}active{% endblock blogactive %}
+
+
+{% block body %}
+
+<div class="container my-3">
+    <h2>Search resuelts:</h2>
+    {% if allPosts|length < 1 %}
+    <p>No suerch result..</p>
+
+    Your search Query: <b> {{query}} </b> does not match my documents. <br>
+    Suggestions:.... <br>
+    <ul>
+   
+       <li> Make sure that all words are spelled correctly.</li>
+      <li>Try different keywords.</li>
+      <li> Make sure that all words are spelled correctly.</li>
+      <li>  Try more general keywords.</li>
+      <li> Try fewer keywords.</li>
+    
+    </ul>
+    {% endif %}
+    {% for Post in allPosts  %}
+
+
+    <div class="col-md-6">
+      <div class="card flex-md-row my-4 box-shadow h-md-250">
+        <div class="card-body d-flex flex-column align-items-start">
+          <strong class="d-inline-block mb-2 text-primary">Artical by {{Post.author}}</strong>
+          <h3 class="mb-0">
+            <a class="text-dark" href="#">{{post.title}}</a>
+          </h3>
+          <div class="mb-1 text-muted">{{post.datetime}}</div>
+          <p class="card-text mb-auto">{{Post.content | truncatechars:100}}
+          </p>
+          <div class="my-2">
+          <a href="/blog/{{Post.slug}}" role="button" class="btn btn-primary">Continue reading</a>
+        </div>
+        </div>
+      </div> 
+      {% endfor %}
+  </div
+
+{% endblock body %}
