@@ -44,5 +44,6 @@ def postComment(request):
             comment.save()
             messages.success(request, "Your reply has been posted successfully")
         
+        
     return redirect(f"/blog/{post.slug}")
 
